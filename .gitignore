@@ -1,0 +1,6 @@
+*.egg-info/*
+.coverage
+__pycache__
+
+vertrag/assets
+vertrag/templates
