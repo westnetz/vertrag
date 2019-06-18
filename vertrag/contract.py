@@ -34,16 +34,16 @@ class Positions:
         self._data = self.ps[cid]
 
     def add_unbilled(self):
-        pass
+        raise NotImplementedError
 
     def get_unbilled(self):
-        pass
+        raise NotImplementedError
 
     def get_billed(self):
-        pass
+        raise NotImplementedError
 
     def bill(self, positions_id, invoice_id, date):
-        pass
+        raise NotImplementedError
 
     def save(self):
         self.ps[cid] = self._data
@@ -79,9 +79,9 @@ class Contract:
         self._data = self.os[self.order_id]
         return self
 
-    def from_contract_file(self, contract_id):
-        self.contract_id = contract_id
-        pass
+    def from_contract(self, cid):
+        self._data = self.cs[cid]
+        return self
 
     def to_yaml(self):
         self.cs[self.cid] = self._data
@@ -127,7 +127,7 @@ class ContractFactory(DocumentFactory):
 
     def from_contract(self, contract_id):
         return Contract(
-                    order_store = self.os,
+                    orders_store = self.os,
                     contracts_store = self.cs,
                     positions_store = self.ps,
                ).from_contract(contract_id)
